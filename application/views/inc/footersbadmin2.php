@@ -1,3 +1,17 @@
+<!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+
 </div>
     <!-- End of Page Wrapper -->
 
@@ -42,10 +56,13 @@
 
     <!-- Page level plugins -->
     <script src="<?php echo base_url(); ?>sbadmin2/vendor/chart.js/Chart.min.js"></script>
+    <script src="<?php echo base_url(); ?>sbadmin2/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url(); ?>sbadmin2/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="<?php echo base_url(); ?>sbadmin2/js/demo/chart-area-demo.js"></script>
     <script src="<?php echo base_url(); ?>sbadmin2/js/demo/chart-pie-demo.js"></script>
+    <script src="<?php echo base_url(); ?>sbadmin2/js/demo/datatables-demo.js"></script>
 
 </body>
 

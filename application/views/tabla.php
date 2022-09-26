@@ -1,30 +1,4 @@
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-
-            <?php echo form_open_multipart('usuario/logout'); ?>
-                <button type="submit" name="buton2" class="btn btn-danger">CERRAR SESIÓN</button>
-            <?php echo form_close(); ?>
-
-            <h1>Lista de socios habilitados</h1>
-            <h2>Login: <?php echo $this->session->userdata('idusuario'); ?></h2>
-            <h2>Login: <?php echo $this->session->userdata('login'); ?></h2>
-            <h2>Login: <?php echo $this->session->userdata('tipo'); ?></h2>
-
-
-            <?php echo form_open_multipart('socio/deshabilitados'); ?>
-                <button type="submit" name="buton2" class="btn btn-warning">VER SOCIOS DESHABILITADOS</button>
-            <?php echo form_close(); ?>
-
-            <br>
-
-            <?php echo form_open_multipart('socio/agregar'); ?>
-                <button type="submit" name="buton1" class="btn btn-primary">AGREGAR SOCIO</button>
-
-            <?php echo form_close(); ?>
-
-            <table class="table">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -80,7 +54,3 @@
                     ?>
                    
                 </tbody>
-            </table>
-        </div>
-    </div>
-</div>

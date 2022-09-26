@@ -327,7 +327,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/userguide3/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'Decode';
 
 /*
 |--------------------------------------------------------------------------
@@ -335,7 +335,7 @@ $config['encryption_key'] = '';
 |--------------------------------------------------------------------------
 |
 | 'sess_driver'
-|
+| 
 |	The storage driver to use: files, database, redis, memcached
 |
 | 'sess_cookie_name'

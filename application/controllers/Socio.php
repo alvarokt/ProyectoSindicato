@@ -10,7 +10,9 @@ class Socio extends CI_Controller {
 
 		$this->load->view('inc/headersbadmin2');
 		$this->load->view('inc/sidebarsbadmin2');
-        $this->load->view('lista',$data);
+		$this->load->view('inc/topbarsbadmin2');
+        $this->load->view('tabla',$data);
+        $this->load->view('inc/topbar2sbadmin2');
         $this->load->view('inc/footersbadmin2');
 	}
 
