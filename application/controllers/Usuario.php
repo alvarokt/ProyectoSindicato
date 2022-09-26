@@ -68,7 +68,7 @@ class Usuario extends CI_Controller {
 			}
 			else
 			{
-				redirect('socio/user','refresh');
+				redirect('socio/index','refresh');
 			}
 
 		}

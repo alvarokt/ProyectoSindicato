@@ -1,14 +1,13 @@
 
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Primer Apellido</th>
-                    <th scope="col">Segundo Apellido</th>
-                    <th scope="col">Telefono</th>
-                    <th scope="col">Modificar</th>
-                    <th scope="col">Eliminar</th>
-                    <th scope="col">Deshabilitar</th>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Primer Apellido</th>
+                    <th>Segundo Apellido</th>
+                    <th>Telefono</th>
+                    <th>Modificar</th>
+                    <th>Deshabilitar</th>
 
                 </tr>
                 </thead>
@@ -31,13 +30,7 @@
                                 <?php echo form_close(); ?>
 
                             </td>
-                            <td>
-                                <?php echo form_open_multipart('socio/eliminarbd'); ?>
-                                <input type="hidden" name="idsocio" value="<?php echo $row->idSocio; ?>">
-                                <input type="submit" name="buttonx" value="Eliminar" class="btn btn-danger">
-                                <?php echo form_close(); ?>
 
-                            </td>
 
                             <td>
                                 <?php echo form_open_multipart('socio/deshabilitarbd'); ?>
