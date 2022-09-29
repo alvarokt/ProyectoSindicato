@@ -3,6 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Socio extends CI_Controller {
 
+	public function __construct(){
+		parent::__construct();
+	}
+
 	public function index()
 	{
 		$lista=$this->socio_model->listasocios();
@@ -11,8 +15,7 @@ class Socio extends CI_Controller {
 		$this->load->view('inc/headersbadmin2');
 		$this->load->view('inc/sidebarsbadmin2');
 		$this->load->view('inc/topbarsbadmin2');
-		//$this->load->view('inc/pagecontent');
-        $this->load->view('principal',$data);
+        $this->load->view('tabla',$data);
         $this->load->view('inc/topbar2sbadmin2');
         $this->load->view('inc/footersbadmin2');
 	}
@@ -20,9 +23,23 @@ class Socio extends CI_Controller {
 	public function agregar()
 	{
 
-		$this->load->view('inc/header');
+		$this->load->view('inc/headersbadmin2');
+		$this->load->view('inc/sidebarsbadmin2');
+		$this->load->view('inc/topbarUSER');
         $this->load->view('formularioSocio');
-        $this->load->view('inc/footer');
+        $this->load->view('inc/topbar2sbadmin2');
+        $this->load->view('inc/footersbadmin2');
+	}
+
+	public function venta()
+	{
+
+		$this->load->view('inc/headersbadmin2');
+		$this->load->view('inc/sidebarsbadmin2');
+		$this->load->view('inc/topbarUSER');
+        $this->load->view('venta');
+        $this->load->view('inc/topbar2sbadmin2');
+        $this->load->view('inc/footersbadmin2');
 	}
 
 	public function agregarbd()
@@ -51,9 +68,12 @@ class Socio extends CI_Controller {
 		$idsocio =$_POST['idsocio'];
 		$data ['infosocio']=$this->socio_model->recuperarsocio($idsocio);
 
-		$this->load->view('inc/header');
+		$this->load->view('inc/headersbadmin2');
+		$this->load->view('inc/sidebarsbadmin2');
+		$this->load->view('inc/topbarUSER');
         $this->load->view('formulariomodificar',$data);
-        $this->load->view('inc/footer');
+        $this->load->view('inc/topbar2sbadmin2');
+        $this->load->view('inc/footersbadmin2');
 	}
 
 	public function modificarbd()
@@ -82,9 +102,12 @@ class Socio extends CI_Controller {
 		$lista=$this->socio_model->listasociosdeshabilitados();
 		$data['socio']=$lista;
 
-		$this->load->view('inc/header');
+		$this->load->view('inc/headersbadmin2');
+		$this->load->view('inc/sidebarsbadmin2');
+		$this->load->view('inc/topbarUSER');
         $this->load->view('listadeshabilitados',$data);
-        $this->load->view('inc/footer');
+        $this->load->view('inc/topbar2sbadmin2');
+        $this->load->view('inc/footersbadmin2');
 	}
 
 	public function habilitarbd()
@@ -94,6 +117,12 @@ class Socio extends CI_Controller {
 
 		$this->socio_model->modificarsocio($idsocio,$data);
 		redirect('socio/deshabilitados','refresh');
+	}
+
+	public function getdatos()
+	{
+		$resultado = $this->db->get('socio');
+		echo json_encode($resultado->result());
 	}
 
 }

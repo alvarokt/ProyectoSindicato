@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard</title>
+    <title>Sistema Web</title>
 
     <!-- Custom fonts for this template-->
     <link href="<?php echo base_url(); ?>sbadmin2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -23,6 +23,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <!-- Custom styles for this template-->
     <link href="<?php echo base_url(); ?>sbadmin2/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Using jQuery with a CDN -->
+    <script src="<?php echo base_url(); ?>sbadmin2/vendor/jquery/jquery.js"></script>
+    <script src="<?php echo base_url(); ?>sbadmin2/vendor/jquery/jquery.min.js"></script>
+
+    <!-- JS file -->
+    <script src="<?php echo base_url(); ?>autocomplete/jquery.easy-autocomplete.min.js"></script>
+
+    <!-- CSS file -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>autocomplete/easy-autocomplete.min.css">
+
+    <!-- Additional CSS Themes file - not required-->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>autocomplete/easy-autocomplete.themes.min.css">
 
 </head>
 

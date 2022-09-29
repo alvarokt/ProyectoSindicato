@@ -1,8 +1,9 @@
+
 <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Sistema Web 2022</span>
                     </div>
                 </div>
             </footer>
@@ -48,6 +49,7 @@
         </div>
     </div>
 
+    
 
 
     <!-- Bootstrap core JavaScript-->
@@ -55,6 +57,7 @@
     <script src="<?php echo base_url(); ?>sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
+    <script src="<?php echo base_url(); ?>sbadmin2/js/peticiones.js"></script>
     <script src="<?php echo base_url(); ?>sbadmin2/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
@@ -70,6 +73,30 @@
     <script src="<?php echo base_url(); ?>sbadmin2/js/demo/chart-pie-demo.js"></script>
     <script src="<?php echo base_url(); ?>sbadmin2/js/demo/datatables-demo.js"></script>
 
+
+
+    <script type="text/javascript">
+        var options = {
+            url: "<?php echo base_url(); ?>socio/getdatos",
+
+            getValue: "nombres",
+
+            list: {
+                match: {
+                    enabled: true
+                },
+                onClickEvent: function(){
+                    var value = $("#nombresocio").getSelectedItemData().idSocio;
+                    $("#nombres2").val(value).trigger("change");
+                }
+            }
+        };
+
+    $("#nombresocio").easyAutocomplete(options);
+    </script>
+
+
 </body>
 
 </html>
+

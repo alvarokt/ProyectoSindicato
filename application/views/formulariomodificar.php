@@ -13,11 +13,37 @@
                     ?>
 
                     <input type="hidden" name="idsocio" value="<?php echo $row->idSocio; ?>">
-                    <input type="text" name="nombres" placeholder="Ingrese su nombre(s)" value="<?php echo $row->nombres; ?>">
-                    <input type="text" name="apellidopaterno" placeholder="Ingrese su primer apellido" value="<?php echo $row->apellidoPaterno; ?>">
-                    <input type="text" name="apellidomaterno" placeholder="Ingrese su segundo apellido" value="<?php echo $row->apellidoMaterno; ?>">
-                    <input type="text" name="telefono" placeholder="Ingrese número telefónico" value="<?php echo $row->telefono; ?>">
+
+                    <div class="form-group">
+                        <label for="inputAddress">Nombres:</label>
+                        <input type="text" class="form-control" name="nombres" id="inputAddress" placeholder="Ingrese Nombre(s)" required value="<?php echo $row->nombres; ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputAddress">Apellido Paterno:</label>
+                        <input type="text" class="form-control" name="apellidopaterno" id="inputAddress" placeholder="Ingrese primer apellido" value="<?php echo $row->apellidoPaterno; ?>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputAddress">Apellido Materno:</label>
+                        <input type="text" class="form-control" name="apellidomaterno" id="inputAddress" placeholder="Ingrese segundo apellido" value="<?php echo $row->apellidoMaterno; ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputAddress">Teléfono:</label>
+                        <input type="text" class="form-control" name="telefono" id="inputAddress" placeholder="Ingrese número telefonico" value="<?php echo $row->telefono; ?>">
+                    </div>
+                    
+
                     <button type="submit" class="btn btn-primary">MODIFICAR SOCIO</button>
+
+
+
+
+
+
+
+
                     <?php 
                     form_close(); 
                 }

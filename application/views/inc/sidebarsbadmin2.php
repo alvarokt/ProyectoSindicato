@@ -37,8 +37,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones:</h6>
-                        <a class="collapse-item" href="#">Lista de clientes</a>
-                        <a class="collapse-item" href="#">Agregar cliente</a>
+                        <a class="collapse-item" href="<?php echo base_url();?>index.php/socio/index">Lista de socios</a>
+                        <a class="collapse-item" href="<?php echo base_url();?>index.php/socio/agregar">Agregar socio</a>
                     </div>
                 </div>
             </li>
@@ -51,12 +51,12 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+                
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" >
+                <a class="nav-link collapsed" href="<?php echo base_url();?>index.php/socio/venta" >
                     <i class="fas fa-fw fa-cash-register"></i>
                     <span>Caja</span>
                 </a>

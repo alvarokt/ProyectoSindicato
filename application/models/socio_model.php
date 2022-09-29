@@ -52,4 +52,14 @@ class Socio_model extends CI_Model {
 		return $this->db->get(); //devolucion del estado de la consulta
 
 	}
+
+	public function getproductos($valor){
+		$this->db->select("idSocio,nombres,telefono");
+		$this->db->from("socio");
+		$this->db->like("nombres",$valor);
+		$resultados = $this->db->get();
+		return $resultados->result_array();
+	}
+
+	
 }

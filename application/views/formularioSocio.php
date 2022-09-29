@@ -6,11 +6,28 @@
             <h2>Agregar Socio</h2>
 
             <?php echo form_open_multipart('socio/agregarbd'); ?>
+                  <div class="form-group">
+                    <label for="inputAddress">Nombres:</label>
+                    <input type="text" class="form-control" name="nombres" id="inputAddress" placeholder="Ingrese Nombre(s)" required>
+                  </div>
 
-                <input type="text" name="nombres" placeholder="Ingrese su nombre">
-                <input type="text" name="apellidopaterno" placeholder="Ingrese su primer apellido">
-                <input type="text" name="apellidomaterno" placeholder="Ingrese su segundo apellido">
-                <input type="text" name="telefono" placeholder="Ingrese número telefónico">
+                  <div class="form-group">
+                    <label for="inputAddress">Apellido Paterno:</label>
+                    <input type="text" class="form-control" name="apellidopaterno" id="inputAddress" placeholder="Ingrese primer apellido" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputAddress">Apellido Materno:</label>
+                    <input type="text" class="form-control" name="apellidomaterno" id="inputAddress" placeholder="Ingrese segundo apellido">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputAddress">Teléfono:</label>
+                    <input type="text" class="form-control" name="telefono" id="inputAddress" placeholder="Ingrese número telefonico">
+                  </div>
+
+                
+
                 <button type="submit" class="btn btn-primary">AGREGAR SOCIO</button>
 
             <?php echo form_close(); ?>
