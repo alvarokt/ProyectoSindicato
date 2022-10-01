@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-        Caja
+        Caja de venta del sindicato
         </h1>
     </section>
     <!-- Main content -->
