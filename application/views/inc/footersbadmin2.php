@@ -95,6 +95,26 @@
     $("#nombresocio").easyAutocomplete(options);
     </script>
 
+<script type="text/javascript">
+        var options = {
+            url: "<?php echo base_url(); ?>socio/getdatos",
+
+            getValue: "nombres",
+
+            list: {
+                match: {
+                    enabled: true
+                },
+                onClickEvent: function(){
+                    var value = $("#nombresocio").getSelectedItemData().idSocio;
+                    $("#nombres2").val(value).trigger("change");
+                }
+            }
+        };
+
+    $("#nombresocio").easyAutocomplete(options);
+    </script>
+
 
 </body>
 
