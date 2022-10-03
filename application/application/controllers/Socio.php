@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Socio extends CI_Controller {
 
-	// public function __construct(){
-	// 	parent::__construct();
+	public function __construct(){
+		parent::__construct();
 	// 	$this->load->model("socio_model");
 	// }
 
