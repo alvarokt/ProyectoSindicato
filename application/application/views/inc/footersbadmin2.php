@@ -105,10 +105,10 @@
                 $("#id-socio").val(value).trigger("change");
 
             },
-            // onClickEvent: function() {
-            //     var value = $("#nombresocio").getSelectedItemData().nombres;
+            onClickEvent: function() {
+                var value = $("#nombresocio").getSelectedItemData().nombres;
 
-            //     $("#socioname").val(value).trigger("change");
+                $("#socioname").val(value).trigger("change");
 
             // }
             // onSelectItemEvent: function() {
