@@ -133,26 +133,26 @@
 
 $(document).ready(function(){
 
-    // $("#nombresocio").autocomplete({
-    //     source:function(request, response){
-    //         $.ajax({
-    //             url: "<?php echo base_url();?>index.php/socio/getdatos",
-    //             type: "POST",
-    //             dataType: "json",
-    //             data:{valor: request.term},
-    //             success:function(data){
-    //                 response(data);
-    //             }
-    //         });
-    //     },
-    //     minLength:3 ,
-    //     select:function(event, ui){
-    //         data = ui.item.idHoja_ruta + "*" + ui.item.label + "*" +ui.item.precioBase+ "*"+ui.item.saldo;
-    //         $("#btn-agregar").val(data);
+    $("#nombresocio").autocomplete({
+        source:function(request, response){
+            $.ajax({
+                url: "<?php echo base_url();?>index.php/socio/getdatos",
+                type: "POST",
+                dataType: "json",
+                data:{valor: request.term},
+                success:function(data){
+                    response(data);
+                }
+            });
+        },
+        minLength:3 ,
+        select:function(event, ui){
+            data = ui.item.idHoja_ruta + "*" + ui.item.label + "*" +ui.item.precioBase+ "*"+ui.item.saldo;
+            $("#btn-agregar").val(data);
 
-    //     },
+        },
 
-    // });
+    });
     
     $("#lineatransporte").autocomplete({
         source:function(request, response){
