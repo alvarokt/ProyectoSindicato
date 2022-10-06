@@ -26,6 +26,12 @@
         <input type="hidden" class="form-control " id="socioname" name="socioname" />
     </div>
 
+    <div class="col col-md-6 mt-3">
+        <label for="">Socio:</label>
+        <input type="hidden" class="form-control " id="id-socio" name="id-socio" readonly />
+        <input type="hidden" class="form-control " id="socioname" name="socioname" />
+    </div>
+
    <!--  <form id="p1">
          <div class="col-md-6">
             <label for="">Linea:</label>
