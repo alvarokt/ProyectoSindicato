@@ -154,6 +154,21 @@ $(document).ready(function(){
 
     });
     
+    $('#categorias').change(function(){
+      var country_id = $('#categorias').val();
+       $.ajax({
+        url:"<?php echo base_url(); ?>socio/categorias",
+        method:"POST",
+        data:{country_id:country_id},
+        success:function(data)
+        {
+         $('#hojas').html(data);
+        }
+       });
+
+     });
+
+
     $("#lineatransporte").autocomplete({
         source:function(request, response){
             $.ajax({
