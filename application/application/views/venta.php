@@ -45,10 +45,11 @@
     </div> -->
 
     <div class="col col-md-6 mt-3">
-            <label for="">Categiria hojas de ruta:</label>
+            <label for="">Categoria hojas de ruta:</label>
             <select class="form-control">
                 <option value="0">Seleccionar</option>
             </select>
+            <button class="btn btn-primary" id="btn-buscar">BUSCAR</button>
     </div>
 
     <div class="col col-md-6 mt-3">

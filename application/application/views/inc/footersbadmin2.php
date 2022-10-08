@@ -147,7 +147,7 @@ $(document).ready(function(){
         },
         minLength:3 ,
         select:function(event, ui){
-            data = ui.item.idHoja_ruta + "*" + ui.item.label + "*" +ui.item.precioBase+ "*"+ui.item.saldo;
+            data = ui.item.idHoja_ruta + "*" + ui.item.label + "*" +ui.item.precioBase+ "*"+ui.item.saldo+ "*" + ui.item.fecha + "*" +ui.item.estado+ "*"+ui.item.idlinea;
             $("#btn-agregar").val(data);
 
         },
