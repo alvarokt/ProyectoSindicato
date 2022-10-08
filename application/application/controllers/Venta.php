@@ -36,5 +36,30 @@ class Venta extends CI_Controller {
     $this->load->view('inc/footersbadmin2');
   }
   
+  public function buscarAutos()
+  {
+    $idsocios =$_POST['socio_id'];
+    $data2['infoautos']=$this->venta_model->listaAutosAsociados($idsocios);
+  }
+
+  public function fillAutos() {
+        
+        $idSocio = $this->input->post('idEstado');
+        $idLinea = $this->input->post('idEstado');
+        
+        if($idSocio)
+        {
+          $this->load->model('venta_model');
+          $autos = $this->venta_model->getAutos($idSocio);
+          echo '<option value="0">Selecionar</option>';
+          foreach($autos as $fila)
+            {
+              echo '<option value="'. $fila->idAutomovil .'">'. $fila->datos .'</option>';
+            }
+        }else 
+        {
+          echo '<option value="0">SELECCIONAR</option>';
+        }
+  }
   
 }
