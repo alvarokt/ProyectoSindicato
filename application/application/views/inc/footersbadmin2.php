@@ -200,6 +200,8 @@ $(document).ready(function(){
             html += "<td>"+infoproducto[1]+"</td>";
             html += "<td><input type='hidden' name='precios[]' value='"+infoproducto[2]+"'>"+infoproducto[2]+"</td>";
             html += "<td><input type='hidden' name='importes[]' value='"+infoproducto[2]+"'><p>"+infoproducto[2]+"</p></td>";
+            html += "<td><input type='hidden' name='importes[]' value='"+infoproducto[3]+"'><p>"+infoproducto[2]+"</p></td>";
+            html += "<td><input type='hidden' name='importes[]' value='"+infoproducto[3]+"'><p>"+infoproducto[2]+"</p></td>";
             html += "<td><button type='button' id='eliminar' class='btn btn-danger btn-circle'><span class='fas fa-trash'></span></button></td>";
             html += "</tr>";
             $("#tbventas tbody").append(html);

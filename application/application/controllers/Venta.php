@@ -61,5 +61,40 @@ class Venta extends CI_Controller {
           echo '<option value="0">SELECCIONAR</option>';
         }
   }
+  public function crearVenta()
+  { 
+    if ($_POST['idCliente'] != null) {
+      $parametros = $this->datos();
+      $idVenta = $this->venta_model->crearVenta($parametros);
+      //Actualizar detalle de la venta
+      foreach ($_POST['idarticulo'] as $key => $id) {
+        $cantidad = $_POST['cantidad'][$key];
+        $precio_venta = $_POST['precio_venta'][$key];
+        if ($cantidad > 0) {
+          
+          $paramsDetalle = array(
+            'idVenta' => $idVenta,
+            'idProducto' => $id,
+            'cantidad' => $cantidad,
+            'precioUnitario' => $precio_venta
+          );
+          $this->detalleVenta_model->crearDetalleVenta($paramsDetalle);
+          //Actualizar stock producto
+          $infoProducto = $this->producto_model->recuperarProducto($id);
+          foreach ($infoProducto->result() as $row) {
+            $nuevoStock = $row->stock - $cantidad;
+            $idProducto = $row->idProducto;
+            $data['stock'] = $nuevoStock;    
+            $this->producto_model->modificarProducto($idProducto, $data);
+          }
+        }
+      }
+      $this->notaDeVenta($idVenta);
+      //redirect('venta/index', 'refresh');
+    }
+    else {
+      $this->agregar();
+    }
+  }
   
 }
