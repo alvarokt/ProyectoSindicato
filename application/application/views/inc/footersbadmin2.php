@@ -110,9 +110,9 @@
 
                 $("#socioname").val(value).trigger("change");
 
-            // }
-            // onSelectItemEvent: function() {
-            //     var index = $("#nombresocio").getSelectedItemIndex();
+            }
+            onSelectItemEvent: function() {
+                var index = $("#nombresocio").getSelectedItemIndex();
 
             //     $("#id-socio").val(index).trigger("change");
             // }
@@ -222,6 +222,9 @@ $(document).ready(function(){
         importe = cantidad * precio;
         $(this).closest("tr").find("td:eq(3)").children("p").text(importe.toFixed(2));
         $(this).closest("tr").find("td:eq(3)").children("input").val(importe.toFixed(2));
+        $(this).closest("tr").find("td:eq(4)").children("p").text(importe.toFixed(2));
+        $(this).closest("tr").find("td:eq(4)").children("input").val(importe.toFixed(2));
+
         sumar();
     });
 
