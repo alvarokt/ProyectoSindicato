@@ -135,8 +135,10 @@ $(document).ready(function(){
 
     $("#nombresocio").autocomplete({
         source:function(request, response){
+            var idsocio = $(#nombresocio).val();
+            var idlinea = $(#lineas).val();
             $.ajax({
-                url: "<?php echo base_url();?>index.php/socio/getdatos",
+                url: "<?php echo base_url();?>index.php/socio/getdatos/"+idSocio+"/"+idlinea,
                 type: "POST",
                 dataType: "json",
                 data:{valor: request.term},
