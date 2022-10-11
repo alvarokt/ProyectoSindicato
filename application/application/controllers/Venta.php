@@ -96,5 +96,16 @@ class Venta extends CI_Controller {
       $this->agregar();
     }
   }
+  function datos()
+  {
+    $params = array(
+      'fecha' => $this->input->post('fecha'),
+      'total' => $this->input->post('montoTotal'),
+      'idusuario' => $this->session->userdata("idusuario"),
+      'idCliente' => $this->input->post('idCliente'),
+      'nroComprobante' => $this->input->post('nroComprobante'),
+    );
+    return $params;
+  }
   
 }

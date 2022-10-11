@@ -34,5 +34,20 @@ class Venta_model extends CI_Model {
             return $resultados->result();
         }
 	}
+
+    public function buscarCliente()
+  {
+
+    $nit_carnet = $this->input->post('nit_carnet');
+    $data['cliente'] = $this->cliente_model->recuperarClienteVenta($nit_carnet);
+    $data['productos'] = $this->producto_model->listarTodosProducto();
+    //print_r($data['cliente']);
+    ///*
+    $this->load->view('inc_header');
+    $this->load->view('inc_menu');
+    $this->load->view('venta/venta_agregar',$data);
+    $this->load->view('inc_footer');
+    //*/
+  }
 }
 
