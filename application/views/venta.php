@@ -1,142 +1,134 @@
 
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-        Caja de venta del sindicato
-        </h1>
-    </section>
-    <!-- Main content -->
-    <section class="content">
-        <!-- Default box -->
-        <div class="box box-solid">
-            <div class="box-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        
-                        <form action="<?php echo base_url();?>index.php/movimientos/ventas/store" method="POST" class="form-horizontal">
-                            <div class="form-group">
-                               
-                                 
-                            </div>
 
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <label for="">Socio:</label>
-                                    <input type="text" class="form-control" id="nombresocio" />
-                                </div>
+<form action="<?php echo base_url();?>index.php/socio/store" method="POST" class="form-horizontal">
 
-                                <div class="col-md-6">
-                                    <label for="">Linea:</label>
-                                    <input type="text" class="form-control" id="producto">
-                                </div>
+    <h5>ID: <?php echo $this->session->userdata('idusuario'); ?></h5>
+    <h2>VENTA DE HOJAS DE RUTA</h2>
 
-                                <div class="row col-md-12">
-                                    <div class="col col-md-6">
-                                        <label for="">Número de hoja de ruta:</label>
-                                        <input type="text" class="form-control" id="producto" required>
-                                    </div>
-                                    <div class="col col-md-2">
-                                        <label for="">&nbsp;</label>
-                                        <button id="btn-agregar" type="button" class="btn btn-success btn-flat btn-block"><span class="fa fa-plus"></span> Agregar</button>
-                                    </div>
-                                </div>
 
-                                
+    <div class="container form-group mt-3">
 
-                                
-                            </div>
-                            <div class="col-md-12">
-                                <table id="tbventas" class="table table-bordered table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th># Hoja de ruta</th>
-                                        <th>Linea</th>
-                                        <th>Stock</th>
-                                        <th>Precio</th>
-                                        <th>Cantidad</th>
-                                        <th>Importe</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                
-                                </tbody>
-                            </table>
-                            </div>
-                            
+        <!-- <div class="col-md-6">
+            <label for="">Tipo de busqueda:</label>
+            <select class="form-control" >
+              <option selected>Seleccione una opción</option>
+              <option value="1">CI / NIT</option>
+              <option value="2">Razón Social</option>
+            </select>
+        </div> -->
 
-                            <div class="form-group">
-                                
-                                
-                                    <div class="col-md-3">
-                                        <label>TOTAL:</label>
-                                        <br>
-                                        <input type="text" class="form-control" placeholder="0.00" name="total" readonly="readonly">
-                                    </div>
-                                
-                            </div>
-                            
-                            <div class="form-group">
-                                <div class="col-md-3">
-                                    <button type="submit" class="btn btn-success btn-flat">Guardar</button>
-                                </div>
-                                
-                            </div>
-                        </form>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col col-md-2 mt-3">
+                <label>Dato CI / NIT:</label>
+                
             </div>
-            <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
-    </section>
-    <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
 
-<div class="modal fade" id="modal-default">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Lita de Clientes</h4>
+            <div class="col col-md-2 mt-3">
+                <input type="text" class="form-control border-left-success" id="nombresocio" name="nombresocio" />
             </div>
-            <div class="modal-body">
-                <table id="example1" class="table table-bordered table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nombre</th>
-                            <th>Documento</th>
-                            <th>Opcion</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                                <?php if(!empty($clientes)):?>
-                                    <?php foreach($clientes as $cliente):?>
-                                        <tr>
-                                            <td><?php echo $cliente->id;?></td>
-                                            <td><?php echo $cliente->nombre;?></td>
-                                            <td><?php echo $cliente->num_documento;?></td>
-                                            <?php $datacliente = $cliente->id."*".$cliente->nombre."*".$cliente->tipocliente."*".$cliente->tipodocumento."*".$cliente->num_documento."*".$cliente->telefono."*".$cliente->direccion;?>
-                                            <td>
-                                                <button type="button" class="btn btn-success btn-check" value="<?php echo $datacliente;?>"><span class="fa fa-check"></span></button>
-                                              
-                                            </td>
-                                        </tr>
-                                    <?php endforeach;?>
-                                <?php endif;?>
-                    </tbody>
-                </table>
+
+            <div class="col col-md-2 mt-3">
+                <label>Socio:</label>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>
+
+            <div class="col col-md-4 mt-3">
+                <input type="text" class="form-control border-left-success" id="socioname" name="socioname" />
+                <input type="hidden" class="form-control " id="idsocios" name="idsocios" />
+            </div>
+
+            <div class="col col-md-2 mt-3">
+
+                    <button class="btn btn-success " id="btn-buscarmoviles" type="button"><i class="fas fa-check"></i></button>
+                
+                <!-- <button class="btn btn-success btn-circle" id="buscarmoviles" name = "buscarmoviles" type="button"><i class="fas fa-check"></i></button> -->
             </div>
         </div>
-        <!-- /.modal-content -->
+        
+        <div class="row">
+            <div class="col col-md-6 mt-3">
+                <label for="">Hojas de ruta:</label>
+
+                <select id="autosasociados1" class="form-control">
+                    <option value="0">Selecionar</option>
+                    <?php 
+                    foreach ($hojas as $i) {
+                        echo '<option value="'. $i->idHoja_ruta .'">'. $i->descripcion .'</option>';
+                    }
+                    ?>  
+                </select>
+
+                <label for="">Automoviles asociados:</label>
+
+                <select id="auso" class="form-control">
+                    <option value="0">Selecionar</option>
+                </select>
+
+
+                
+                <label for="">Linea de transporte:</label>
+                <input type="text" class="form-control border-left-success" id="lineatransporte" name="lineatransporte">
+            </div>
+        </div>
+        
+        
+
+        <div class="col col-md-6 mt-3">
+
+                <button id="btn-agregar" type="button" class="col-md-6 btn btn-success" >AGREGAR</button>
+
+                <!-- <input type="hidden" name="idsocio" value="<?php echo $row->idSocio; ?>">
+                <button id="btn1" class="btn btn-success" onclick="mostrar();">  SELECCIONAR </button>
+                <?php echo form_close(); ?> --> 
+        </div>
+
+        
+
+        <!-- <script id="sd" type="text/javascript">
+
+            function mostrar2(){
+                document.getElementById('tb').style.display = 'block';           
+            }
+        </script>     -->
     </div>
-    <!-- /.modal-dialog -->
+
+<div class="col-md-12" id="tablaventa">
+    <table id="tbventas" class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>CANTIDAD</th>
+            <th>DETALLE</th>
+            <th>PRECIO UNIT.</th>
+            <th>SUBTOTAL</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    
+    </tbody>
+</table>
+
+
+    <div class="form-group col-row">  
+        <div class="col-md-4">
+            <div class="input-group">
+                <label>Total:</label>
+                <input type="text" class="form-control" placeholder="0.00" id="total" name="total" readonly="readonly">
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.modal -->
+<div class="form-group">
+    <div class="col-md-12">
+        <button type="submit" class="btn btn-success btn-flat">Guardar</button>
+    </div>
+    
+</div>
+</form>
+
