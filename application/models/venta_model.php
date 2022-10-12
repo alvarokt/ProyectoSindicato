@@ -47,13 +47,14 @@ class Venta_model extends CI_Model {
  //        }
  //    }
 
-    public function getAutos($idSocio) {
-        $idSocio2 =$_POST['idsocios'];
+    public function getAutos($idSocio,$idLinea) {
+        // $idSocio2 =$_POST['idsocios'];
 		$this->db->select("idAutomovil,CONCAT ('Nº Movil: ',numeroMovil,' -- ',descripcion) AS datos ");
         // $this->db->select('*');
 		$this->db->from('automovil');
-		$this->db->where('idSocio',$idSocio2);
-        $this->db->where('idHoja_ruta',$idSocio);
+		$this->db->where('idSocio',$idSocio);
+        $this->db->where('idHoja_ruta',$idLinea);
+        $this->db->order_by('datos','desc');
 		$resultados = $this->db->get();
         
         if($resultados->num_rows() > 0){

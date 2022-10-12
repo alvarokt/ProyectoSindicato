@@ -41,7 +41,7 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
 
-                     <?php echo form_open_multipart('usuario/logout'); ?>
+                    <?php echo form_open_multipart('usuario/logout'); ?>
                         <button type="submit" name="buton2" class="btn btn-primary">Salir</button>
                     <?php echo form_close(); ?>
 
@@ -100,7 +100,7 @@ $(document).ready(function(){
             match: {
                 enabled: true
             },
-            onClickEvent: function() {
+            onChooseEvent: function() {
 
                 var value1 = $("#nombresocio").getSelectedItemData().nombres;
                 var value2 = $("#nombresocio").getSelectedItemData().idSocio;             
@@ -150,18 +150,19 @@ $(document).ready(function(){
 
     // });
 
-    $("#autosasociados1").change(function() {
-        $("#autosasociados1 option:selected").each(function() {
-            var idEstado = $('#autosasociados1').val(); //idLinea
-            var idEstado2 = $('#idsocios').val(); //idSocio
-            $.post("<?php echo base_url(); ?>index.php/venta/fillAutos", {
-                idEstado : idEstado
-                idEstado2 : idEstado2
-            }, function(data) {
-                $("#auso").html(data);
-            });
-        });
-    });
+    // $("#autosasociados1").change(function() {
+    //     $("#autosasociados1 option:selected").each(function() {
+    //         var idEstado = $('#autosasociados1').val(); //idLinea
+    //         // var idEstado2 = $('#idsocios').val(); //idSocio
+    //         $.post("<?php echo base_url(); ?>index.php/venta/fillAutos/", 
+    //         {
+    //             idEstado : idEstado
+    //             // idEstado2 : idEstado2
+    //         }, function(data) {
+    //             $("#auso").html(data);
+    //         });
+    //     });
+    // });
 
     
     $("#lineatransporte").autocomplete({
@@ -204,25 +205,57 @@ $(document).ready(function(){
 
     // $("#idsocios").change(function() {
 
-    $('#btn-buscarmoviles').click(function(){
-            var socio_id = $('#idsocios').val();
-            if (socio_id != ''){
-                $.ajax({
-                    url: "<?php echo base_url();?>index.php/socio/fillAutoSocio",
-                    method: "POST",
-                    d:{socio_id:socio_id},
-                    success:function(d)
-                    {
-                        $("#autosasociados").html(d);
-                    }
-                })
-                // alert(socio_id)
-            } 
+    // $('#btn-buscarmoviles').click(function(){
+    //         var socio_id = $('#idsocios').val();
+    //         if (socio_id != ''){
+    //             $.ajax({
+    //                 url: "<?php echo base_url();?>index.php/socio/fillAutoSocio",
+    //                 method: "POST",
+    //                 d:{socio_id:socio_id},
+    //                 success:function(d)
+    //                 {
+    //                     $("#autosasociados").html(d);
+    //                 }
+    //             })
+    //             // alert(socio_id)
+    //         } 
 
-            else
-            {
-               $('#autosasociados').html('<option value="0">Sin Automoviles Asociados</option>');
-            }
+    //         else
+    //         {
+    //            $('#autosasociados').html('<option value="0">Sin Automoviles Asociados</option>');
+    //         }
+    $("#autosasociados1").change(function() {
+        $("#autosasociados1 option:selected").each(function() {
+                var idEstado = $('#idsocios').val();
+                var idEstado2 = $('#autosasociados1').val();
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url();?>index.php/venta/fillAutos/"+idEstado+"/"+idEstado2,
+                        
+                        // data:{idEstado:idEstado},
+                        success:function(data)
+                        {
+                            $("#auso").html(data);
+                        }
+                    });
+                });
+        });
+
+
+
+// $("#autosasociados1").change(function() {
+//         $("#autosasociados1 option:selected").each(function() {
+//             var idEstado = $('#autosasociados1').val(); //idLinea
+//             // var idEstado2 = $('#idsocios').val(); //idSocio
+//             $.post("<?php echo base_url(); ?>index.php/venta/fillAutos/", 
+//             {
+//                 idEstado : idEstado
+//                 // idEstado2 : idEstado2
+//             }, function(data) {
+//                 $("#auso").html(data);
+//             });
+//         });
+//     });
             
             // $("#idsocios option:selected").each(function() {
             //     idsocios = $('#id-socio').val();
@@ -233,7 +266,7 @@ $(document).ready(function(){
             //     });
             // });
             // $("#socioname").val(null);
-    });
+    // });
 
     // $("#buscarmoviles").on("click",function(){
     //         $("#autosasociados").autocomplete({

@@ -19,37 +19,35 @@
 
         <div class="row">
             <div class="col col-md-2 mt-3">
-                <label>Dato CI / NIT:</label>
+                <label>DATO CI / NIT:</label>
                 
             </div>
 
             <div class="col col-md-2 mt-3">
-                <input type="text" class="form-control border-left-success" id="nombresocio" name="nombresocio" />
+                <input type="text" class="form-control border-left-success" id="nombresocio" name="nombresocio" required />
             </div>
 
             <div class="col col-md-2 mt-3">
-                <label>Socio:</label>
+                <label>SOCIO:</label>
             </div>
 
             <div class="col col-md-4 mt-3">
-                <input type="text" class="form-control border-left-success" id="socioname" name="socioname" />
+                <input type="text" class="form-control border-left-success" id="socioname" name="socioname" readonly />
                 <input type="hidden" class="form-control " id="idsocios" name="idsocios" />
             </div>
 
             <div class="col col-md-2 mt-3">
-
-                    <button class="btn btn-success " id="btn-buscarmoviles" type="button"><i class="fas fa-check"></i></button>
-                
+                    <button class="btn btn-success " id="btn-buscarmoviles" type="button"><i class="fas fa-check"></i></button>             
                 <!-- <button class="btn btn-success btn-circle" id="buscarmoviles" name = "buscarmoviles" type="button"><i class="fas fa-check"></i></button> -->
             </div>
         </div>
         
         <div class="row">
-            <div class="col col-md-6 mt-3">
-                <label for="">Hojas de ruta:</label>
+            <div class="col col-md-6">
+                <label class="mt-3" for="">CATEGORÍA HOJAS DE RUTA:</label>
 
-                <select id="autosasociados1" class="form-control">
-                    <option value="0">Selecionar</option>
+                <select id="autosasociados1" class="form-control" required>
+                    <option value="" selected disabled>SELECCIONAR</option>
                     <?php 
                     foreach ($hojas as $i) {
                         echo '<option value="'. $i->idHoja_ruta .'">'. $i->descripcion .'</option>';
@@ -57,10 +55,10 @@
                     ?>  
                 </select>
 
-                <label for="">Automoviles asociados:</label>
+                <label class="mt-3" for="">AUTOMOVILES ASOCIADOS:</label>
 
-                <select id="auso" class="form-control">
-                    <option value="0">Selecionar</option>
+                <select id="auso" class="form-control" required>
+                    <option value="0" selected disabled>SELECCIONAR</option>
                 </select>
 
 

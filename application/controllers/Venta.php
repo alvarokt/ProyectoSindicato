@@ -19,21 +19,24 @@ class Venta extends CI_Controller {
 
 	public function fillAutos() {
         
-        $idSocio = $this->input->post('idEstado');
-        $idLinea = $this->input->post('idEstado');
+        // $idSocio = $this->input->get('idEstado');
+        // $idLinea = $this->input->get('idEstado');
+        $idSocio = $this->uri->segment(3);
+        $idLinea = $this->uri->segment(4);
         
-        if($idSocio)
+        if($idSocio && $idLinea)
         {
           $this->load->model('venta_model');
-          $autos = $this->venta_model->getAutos($idSocio);
-          echo '<option value="0">Selecionar</option>';
+          $autos = $this->venta_model->getAutos($idSocio,$idLinea);
+          echo '<option value="0">SELECCIONAR MOVIL</option>';
           foreach($autos as $fila)
-            {
-              echo '<option value="'. $fila->idAutomovil .'">'. $fila->datos .'</option>';
-            }
-        }else 
+          {
+            echo '<option value="'. $fila->idAutomovil .'">'. $fila->datos .'</option>';
+          }
+        }
+        else 
         {
-          echo '<option value="0">SELECCIONAR</option>';
+          echo '<option value="0">SIN AUTOMOVILES ASOCIADOS</option>';
         }
   }
   
