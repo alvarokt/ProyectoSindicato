@@ -90,6 +90,10 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+    var pb ='';
+    var pb1 ='';
+
+
     var options = {
         url: "<?php echo base_url();?>index.php/socio/getdatos",
 
@@ -165,6 +169,10 @@ $(document).ready(function(){
     // });
 
     
+    // $("#auso").change(function() {
+    //     $("#auso option:selected").each(function() {
+    //         var valor = $('#auso').val();
+
     $("#lineatransporte").autocomplete({
         source:function(request, response){
             $.ajax({
@@ -177,7 +185,7 @@ $(document).ready(function(){
                 }
             });
         },
-        minLength:3 ,
+        minLength:1 ,
         select:function(event, ui){
             data = ui.item.idHoja_ruta + "*" + ui.item.label + "*" +ui.item.precioBase+ "*"+ui.item.saldo;
             $("#btn-agregar").val(data);
@@ -185,6 +193,11 @@ $(document).ready(function(){
         },
 
     });
+
+
+//   });
+
+// });
 
 
                        
@@ -236,6 +249,7 @@ $(document).ready(function(){
                         success:function(data)
                         {
                             $("#auso").html(data);
+                            // $("#btn-agregar").val(data);
                         }
                     });
                 });
@@ -292,12 +306,15 @@ $(document).ready(function(){
     // });
 
     $("#btn-agregar").on("click",function(){
+        // auso = $(#auso).val();
         data = $(this).val();
+        alert(data);
         if (data !='') {
             infoproducto = data.split("*");
+            // auso = auso.split("*");
             html = "<tr>";
             html += "<td><input type='hidden' name='idhojaruta[]' value='"+infoproducto[0]+"'>"+"-"+"</td>";
-            html += "<td><input type='text' name='cantidades[]' value='1' id='cantidades'></td>";
+            html += "<td><input type='text' name='cantidades[]' value='1' id='cantidades'>"+1+"</td>";
             html += "<td>"+infoproducto[1]+"</td>";
             html += "<td><input type='hidden' name='precios[]' value='"+infoproducto[2]+"'>"+infoproducto[2]+"</td>";
             html += "<td><input type='hidden' name='importes[]' value='"+infoproducto[2]+"'><p>"+infoproducto[2]+"</p></td>";

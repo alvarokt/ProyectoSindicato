@@ -50,7 +50,7 @@
                     <option value="" selected disabled>SELECCIONAR</option>
                     <?php 
                     foreach ($hojas as $i) {
-                        echo '<option value="'. $i->idHoja_ruta .'">'. $i->descripcion .'</option>';
+                        echo '<option value="'. $i->idHoja_ruta .'">'. $i->descripcion .'</option>'; 
                     }
                     ?>  
                 </select>
