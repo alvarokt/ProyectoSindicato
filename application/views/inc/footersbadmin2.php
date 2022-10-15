@@ -42,7 +42,7 @@
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
 
                     <?php echo form_open_multipart('usuario/logout'); ?>
-                        <button type="submit" name="buton2" class="btn btn-primary">Salir</button>
+                        <button type="submit"  name="buton2" class="btn btn-primary">Salir</button>
                     <?php echo form_close(); ?>
 
 
@@ -90,9 +90,6 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-    var pb ='';
-    var pb1 ='';
-
 
     var options = {
         url: "<?php echo base_url();?>index.php/socio/getdatos",
@@ -111,32 +108,23 @@ $(document).ready(function(){
 
                 $("#socioname").val(value1).trigger("change");
                 $("#idsocios").val(value2).trigger("change");
-
             },
-            // onClickEvent: function() {
-            //     var value = $("#nombresocio").getSelectedItemData().nombres;
-
-            //     $("#socioname").val(value).trigger("change");
-
-            // }
-            // onSelectItemEvent: function() {
-            //     var index = $("#nombresocio").getSelectedItemIndex();
-
-            //     $("#id-socio").val(index).trigger("change");
-            // }
-            // onSelectItemEvent: function() {
-            //     var index2 = $("#nombresocio").getSelectedItemIndex();
-
-            //     $("#socioname").val(index2).trigger("change");
-            // }
         }  
     };
     $("#nombresocio").easyAutocomplete(options);
 
-    // $("#nombresocio").autocomplete({
+
+    $('#nombresocio').keypress(function(e) {
+        if (e.which == 13) {
+            return false;
+        }
+    });
+
+    
+    // $("#lineatransporte").autocomplete({
     //     source:function(request, response){
     //         $.ajax({
-    //             url: "<?php echo base_url();?>index.php/socio/getdatos",
+    //             url: "<?php echo base_url();?>index.php/socio/getproductos",
     //             type: "POST",
     //             dataType: "json",
     //             data:{valor: request.term},
@@ -154,50 +142,12 @@ $(document).ready(function(){
 
     // });
 
-    // $("#autosasociados1").change(function() {
-    //     $("#autosasociados1 option:selected").each(function() {
-    //         var idEstado = $('#autosasociados1').val(); //idLinea
-    //         // var idEstado2 = $('#idsocios').val(); //idSocio
-    //         $.post("<?php echo base_url(); ?>index.php/venta/fillAutos/", 
-    //         {
-    //             idEstado : idEstado
-    //             // idEstado2 : idEstado2
-    //         }, function(data) {
-    //             $("#auso").html(data);
-    //         });
-    //     });
-    // });
 
-    
-    // $("#auso").change(function() {
-    //     $("#auso option:selected").each(function() {
-    //         var valor = $('#auso').val();
-
-    $("#lineatransporte").autocomplete({
-        source:function(request, response){
-            $.ajax({
-                url: "<?php echo base_url();?>index.php/socio/getproductos",
-                type: "POST",
-                dataType: "json",
-                data:{valor: request.term},
-                success:function(data){
-                    response(data);
-                }
-            });
-        },
-        minLength:1 ,
-        select:function(event, ui){
-            data = ui.item.idHoja_ruta + "*" + ui.item.label + "*" +ui.item.precioBase+ "*"+ui.item.saldo;
-            $("#btn-agregar").val(data);
-
-        },
+    $('#btn-oksocio').on("click",function(){
+        document.getElementById('linea').disabled=false;
+        // $('#linea).prop('disabled', 'false');
 
     });
-
-
-//   });
-
-// });
 
 
                        
@@ -215,32 +165,12 @@ $(document).ready(function(){
 
     // });
 
+    $("#linea").change(function() {
+        $("#linea option:selected").each(function() {
+                document.getElementById('autos').disabled=false;
 
-    // $("#idsocios").change(function() {
-
-    // $('#btn-buscarmoviles').click(function(){
-    //         var socio_id = $('#idsocios').val();
-    //         if (socio_id != ''){
-    //             $.ajax({
-    //                 url: "<?php echo base_url();?>index.php/socio/fillAutoSocio",
-    //                 method: "POST",
-    //                 d:{socio_id:socio_id},
-    //                 success:function(d)
-    //                 {
-    //                     $("#autosasociados").html(d);
-    //                 }
-    //             })
-    //             // alert(socio_id)
-    //         } 
-
-    //         else
-    //         {
-    //            $('#autosasociados').html('<option value="0">Sin Automoviles Asociados</option>');
-    //         }
-    $("#autosasociados1").change(function() {
-        $("#autosasociados1 option:selected").each(function() {
                 var idEstado = $('#idsocios').val();
-                var idEstado2 = $('#autosasociados1').val();
+                var idEstado2 = $('#linea').val();
                     $.ajax({
                         type: "POST",
                         url: "<?php echo base_url();?>index.php/venta/fillAutos/"+idEstado+"/"+idEstado2,
@@ -248,82 +178,94 @@ $(document).ready(function(){
                         // data:{idEstado:idEstado},
                         success:function(data)
                         {
-                            $("#auso").html(data);
-                            // $("#btn-agregar").val(data);
+                            $("#autos").html(data);
                         }
                     });
-                });
+                    document.getElementById('hojas').disabled=false;
+                    alert(idEstado2);
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url();?>index.php/venta/fillHojas/"+idEstado2,
+                        
+                        // data1:{idEstado2:idEstado2},
+                        success:function(data1)
+                        {
+                            $("#hojas").html(data1);
+                        }
+                    });
         });
+    });
+
+    // function activar(obj){
+    //   if(obj.value=='activa')
+    //          document.getElementById("dos").disabled=false;
+    //   else
+    //          document.getElementById("dos").disabled=true;  
+    // }
 
 
-
-// $("#autosasociados1").change(function() {
-//         $("#autosasociados1 option:selected").each(function() {
-//             var idEstado = $('#autosasociados1').val(); //idLinea
-//             // var idEstado2 = $('#idsocios').val(); //idSocio
-//             $.post("<?php echo base_url(); ?>index.php/venta/fillAutos/", 
-//             {
-//                 idEstado : idEstado
-//                 // idEstado2 : idEstado2
-//             }, function(data) {
-//                 $("#auso").html(data);
-//             });
-//         });
-//     });
-            
-            // $("#idsocios option:selected").each(function() {
-            //     idsocios = $('#id-socio').val();
-            //     $.post("<?php echo base_url(); ?>index.php/venta/fillAutos", {
-            //         idsocios : idsocios
-            //     }, function(data) {
-            //         $("#autosasociados").html(data);
-            //     });
-            // });
-            // $("#socioname").val(null);
-    // });
-
-    // $("#buscarmoviles").on("click",function(){
-    //         $("#autosasociados").autocomplete({
-    //             source:function(request, response){
+    // $("#linea").change(function() {
+    //     $("#linea option:selected").each(function() {
+    //             var idEstado3 = $('#linea').val();
+    //             alert(idEstado3);
+    //             // var idEstado2 = $('#linea').val();
     //                 $.ajax({
-    //                     url: "<?php echo base_url();?>index.php/venta/fillAutos",
     //                     type: "POST",
-    //                     dataType: "json",
-    //                     data:{valor: request.term},
-    //                     success:function(data){
-    //                         response(data);
+    //                     url: "<?php echo base_url();?>index.php/venta/fillHojas",
+                        
+    //                     data1:{idEstado3:idEstado3},
+    //                     success:function(data1)
+    //                     {
+    //                         $("#hojas").html(data1);
     //                     }
     //                 });
-    //             },
-    //             minLength:3 ,
-    //             select:function(event, ui){
-    //                 data = ui.item.idAutomovil + "*" + ui.item.label;
-    //                 // $("#btn-agregar").val(data);
-
-    //             },
-
-    //         });
+    //     });
     // });
 
+
+
     $("#btn-agregar").on("click",function(){
-        // auso = $(#auso).val();
-        data = $(this).val();
-        alert(data);
-        if (data !='') {
-            infoproducto = data.split("*");
-            // auso = auso.split("*");
+        // data = $(this).val();
+
+        var linea = $('#linea').val();
+        var hoja = $('#hojas').val();
+        // var hoja = document.getElementById("hojas");
+
+        var lineadoc = document.getElementById("linea");
+        var linealt = lineadoc.options[lineadoc.selectedIndex].text;
+
+        var auto = document.getElementById("autos");
+        var autoslt = auto.options[auto.selectedIndex].text;
+
+        var hojadoc = document.getElementById("hojas");
+        var hojalt = hojadoc.options[hojadoc.selectedIndex].text;
+
+        alert(hoja);
+
+        // var pb = $('#auso').val();
+        alert(linea);
+        if (hoja !='') {
+            infohoja = hoja.split("*");
             html = "<tr>";
-            html += "<td><input type='hidden' name='idhojaruta[]' value='"+infoproducto[0]+"'>"+"-"+"</td>";
-            html += "<td><input type='text' name='cantidades[]' value='1' id='cantidades'>"+1+"</td>";
-            html += "<td>"+infoproducto[1]+"</td>";
-            html += "<td><input type='hidden' name='precios[]' value='"+infoproducto[2]+"'>"+infoproducto[2]+"</td>";
-            html += "<td><input type='hidden' name='importes[]' value='"+infoproducto[2]+"'><p>"+infoproducto[2]+"</p></td>";
+            html += "<td><input type='hidden' name='idhojaruta[]' value='"+infohoja[0]+"'>"+"•"+"</td>";
+            // html += "<td><input type='hidden' name='idhojaruta[]' value='"+pb+"'>"+selected+"</td>";
+            html += "<td><input type='text' name='cantidades[]' value='1' id='cantidades' style='width : 70px; heigth : 1px' readonly></td>";
+            html += "<td style='font-size: 15px'><p>"+'HOJA DE RUTA #: '+hojalt+'<br>'+linealt+'<br>'+autoslt+"</p></td>";
+            html += "<td><input type='hidden' name='precios[]' value='"+infohoja[1]+"'>"+infohoja[1]+"</td>";
+            html += "<td><input type='hidden' name='importes[]' value='"+infohoja[1]+"'><p>"+infohoja[1]+"</p></td>";
             html += "<td><button type='button' id='eliminar' class='btn btn-danger btn-circle'><span class='fas fa-trash'></span></button></td>";
             html += "</tr>";
             $("#tbventas tbody").append(html);
             sumar();
             $("#btn-agregar").val(null);
             $("#lineatransporte").val(null);
+            var prueba = $('#hojas').val();
+            // let prueba = document.getElementById('hojas');
+            // prueba.prop("disabled", true);
+            alert(prueba);
+            $("#hojas option:selected").prop("disabled", true);
+            // prueba.remove(prueba.selectedIndex);
+            // prueba.options[prueba].disabled.true;
         }else{
             alert("seleccione un producto...");
         }

@@ -10,15 +10,44 @@ class Venta_model extends CI_Model {
     }
 
 
-    public function getHojas() {
+    public function getLineas() {
 
         $this->db->select('*');
-        $this->db->from('hoja_ruta');
+        $this->db->from('linea');
         $this->db->order_by('2', 'asc');
         $estados = $this->db->get();
         
         if($estados->num_rows() > 0){
             return $estados->result();
+        }
+    }
+
+    public function getAutos($idSocio,$idLinea) {
+
+        $this->db->select("idAutomovil,CONCAT ('Nº MOVIL: ',numeroMovil,' -- ','PLACA: ',numeroPlaca) AS datos ");
+        $this->db->from('automovil');
+        $this->db->where('idSocio',$idSocio);
+        $this->db->where('idLinea',$idLinea);
+        $this->db->order_by('datos','asc');
+        $resultados = $this->db->get();
+        
+        if($resultados->num_rows() > 0){
+            return $resultados->result();
+        }
+    }
+
+    public function getHojas($idHoja) {
+
+        $this->db->select('idHoja_ruta,numeroHoja,precioBase');
+        $this->db->from('hoja_ruta');
+        $this->db->where('idLinea',$idHoja);
+        $this->db->where('estado',1);
+        $this->db->order_by('idHoja_ruta','asc');
+        $this->db->limit(3);
+        $resultado = $this->db->get();
+        
+        if($resultado->num_rows() > 0){
+            return $resultado->result();
         }
     }
 
@@ -47,20 +76,7 @@ class Venta_model extends CI_Model {
  //        }
  //    }
 
-    public function getAutos($idSocio,$idLinea) {
-        // $idSocio2 =$_POST['idsocios'];
-		$this->db->select("idAutomovil,CONCAT ('Nº Movil: ',numeroMovil,' -- ',descripcion) AS datos ");
-        // $this->db->select('*');
-		$this->db->from('automovil');
-		$this->db->where('idSocio',$idSocio);
-        $this->db->where('idHoja_ruta',$idLinea);
-        $this->db->order_by('datos','desc');
-		$resultados = $this->db->get();
-        
-        if($resultados->num_rows() > 0){
-            return $resultados->result();
-        }
-    }
+    
 
 
 

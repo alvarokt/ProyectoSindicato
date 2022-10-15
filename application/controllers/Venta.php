@@ -13,56 +13,75 @@ class Venta extends CI_Controller {
 
 	public function buscarAutos()
 	{
-		$idsocios =$_POST['socio_id'];
-		$data2['infoautos']=$this->venta_model->listaAutosAsociados($idsocios);
+  		$idsocios =$_POST['socio_id'];
+  		$data2['infoautos']=$this->venta_model->listaAutosAsociados($idsocios);
+	}
+  
+  public function index()
+  {
+      $lista = $this->venta_model->lista();
+      $data['venta'] = $lista;
+
+  		$this->load->view('inc_header');
+      $this->load->view('inc_menu');
+  		$this->load->view('venta/venta_lista',$data);
+  		$this->load->view('inc_footer');
 	}
 
-	public function fillAutos() {
+  public function venta()
+  {
+      $this->load->model('venta_model');
+      $data['lineas'] = $this->venta_model->getLineas();
+
+      $this->load->view('inc/headersba2');
+      $this->load->view('inc/sidebarsba2');
+      $this->load->view('venta/topbarsba2');
+      $this->load->view('venta',$data);
+      $this->load->view('inc/footersbadmin2');
+  }
+
+  public function fillAutos() {
         
-        // $idSocio = $this->input->get('idEstado');
-        // $idLinea = $this->input->get('idEstado');
-        $idSocio = $this->uri->segment(3);
-        $idLinea = $this->uri->segment(4);
-        
-        if($idSocio && $idLinea)
-        {
+      // $idSocio = $this->input->get('idEstado');
+      $idSocio = $this->uri->segment(3);
+      $idLinea = $this->uri->segment(4);
+      
+      if($idSocio && $idLinea)
+      {
           $this->load->model('venta_model');
           $autos = $this->venta_model->getAutos($idSocio,$idLinea);
           echo '<option value="0">SELECCIONAR MOVIL</option>';
           foreach($autos as $fila)
           {
             echo '<option value="'. $fila->idAutomovil .'">'. $fila->datos .'</option>';
+            // echo '<option value="'. $fila->idAutomovil .''."*".''.$fila->idAutomovil.'">'. $fila->datos .'</option>';
           }
-        }
-        else 
-        {
-          echo '<option value="0">SIN AUTOMOVILES ASOCIADOS</option>';
-        }
+      }
+      else 
+      {
+        echo '<option value="0">SIN AUTOMOVILES ASOCIADOS</option>';
+      }
   }
-  
-  public function index()
-  {
-    $lista = $this->venta_model->lista();
-    $data['venta'] = $lista;
 
-		$this->load->view('inc_header');
-    $this->load->view('inc_menu');
-		$this->load->view('venta/venta_lista',$data);
-		$this->load->view('inc_footer');
-	}
-
-  public function venta()
-  {
-    $this->load->model('venta_model');
-    $data['hojas'] = $this->venta_model->getHojas();
-    
-    // $this->load->view('viewComboBoxes', $data);
-
-    $this->load->view('inc/headersba2');
-    $this->load->view('inc/sidebarsba2');
-    $this->load->view('inicio/topbarsba2');
-    $this->load->view('venta',$data);
-    $this->load->view('inc/footersbadmin2');
+  public function fillHojas() {
+        
+      // $idHoja = $this->input->post('idEstado2');
+      $idHoja = $this->uri->segment(3);
+      
+      if($idHoja)
+      {
+          $this->load->model('venta_model');
+          $hojas = $this->venta_model->getHojas($idHoja);
+          echo '<option value="0">SELECCIONAR HOJA</option>';
+          foreach($hojas as $fila)
+          {
+            echo '<option value="'. $fila->idHoja_ruta .''."*".''. $fila->precioBase .'">'. $fila->numeroHoja .'</option>';
+          }
+      }
+      else 
+      {
+        echo '<option value="0">SIN HOJAS DISPONIBLES</option>';
+      }
   }
   
   public function agregar()
