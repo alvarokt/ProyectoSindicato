@@ -108,17 +108,34 @@ $(document).ready(function(){
 
                 $("#socioname").val(value1).trigger("change");
                 $("#idsocios").val(value2).trigger("change");
+
             },
+            // onClickEvent: function() {
+            //     var value = $("#nombresocio").getSelectedItemData().nombres;
+
+            //     $("#socioname").val(value).trigger("change");
+
+            // }
+            // onSelectItemEvent: function() {
+            //     var index = $("#nombresocio").getSelectedItemIndex();
+
+            //     $("#id-socio").val(index).trigger("change");
+            // }
+            // onSelectItemEvent: function() {
+            //     var index2 = $("#nombresocio").getSelectedItemIndex();
+
+            //     $("#socioname").val(index2).trigger("change");
+            // }
         }  
     };
     $("#nombresocio").easyAutocomplete(options);
 
 
-    $('#nombresocio').keypress(function(e) {
-        if (e.which == 13) {
-            return false;
-        }
-    });
+    // $('#nombresocio').keypress(function(e) {
+    //     if (e.which == 13) {
+    //         return false;
+    //     }
+    // });
 
     
     // $("#lineatransporte").autocomplete({
@@ -228,29 +245,32 @@ $(document).ready(function(){
         // data = $(this).val();
 
         var linea = $('#linea').val();
+        var auto = $('#autos').val();
         var hoja = $('#hojas').val();
+
+
         // var hoja = document.getElementById("hojas");
 
         var lineadoc = document.getElementById("linea");
         var linealt = lineadoc.options[lineadoc.selectedIndex].text;
 
-        var auto = document.getElementById("autos");
-        var autoslt = auto.options[auto.selectedIndex].text;
+        var autos = document.getElementById("autos");
+        var autoslt = autos.options[autos.selectedIndex].text;
 
         var hojadoc = document.getElementById("hojas");
         var hojalt = hojadoc.options[hojadoc.selectedIndex].text;
 
-        alert(hoja);
+        alert(auto);
 
         // var pb = $('#auso').val();
         alert(linea);
-        if (hoja !='') {
+        if (hoja != null) {
             infohoja = hoja.split("*");
             html = "<tr>";
             html += "<td><input type='hidden' name='idhojaruta[]' value='"+infohoja[0]+"'>"+"•"+"</td>";
             // html += "<td><input type='hidden' name='idhojaruta[]' value='"+pb+"'>"+selected+"</td>";
             html += "<td><input type='text' name='cantidades[]' value='1' id='cantidades' style='width : 70px; heigth : 1px' readonly></td>";
-            html += "<td style='font-size: 15px'><p>"+'HOJA DE RUTA #: '+hojalt+'<br>'+linealt+'<br>'+autoslt+"</p></td>";
+            html += "<td style='font-size: 15px'><input type='hidden' name='automv[]' value='"+auto+"'><p>"+'HOJA DE RUTA #: '+hojalt+'<br>'+linealt+'<br>'+autoslt+"</p></td>";
             html += "<td><input type='hidden' name='precios[]' value='"+infohoja[1]+"'>"+infohoja[1]+"</td>";
             html += "<td><input type='hidden' name='importes[]' value='"+infohoja[1]+"'><p>"+infohoja[1]+"</p></td>";
             html += "<td><button type='button' id='eliminar' class='btn btn-danger btn-circle'><span class='fas fa-trash'></span></button></td>";

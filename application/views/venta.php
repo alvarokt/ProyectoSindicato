@@ -4,7 +4,7 @@
 
     <div class="col-md-12 disabled" > 
         <label class="col-md-12 btn disabled border-bottom-warning  bg-gray-200 text-right "> <?php echo date('Y-m-d   H:i'); ?> </label>
-        <input type="hidden" id="fechahora" name="" value="<?php echo date('Y-m-d H:i:s'); ?> "> 
+        <input type="hidden" id="fechahora" name="fechahora" value="<?php echo date('Y-m-d H:i:s'); ?> "> 
     </div>
 
     <h5>ID: <?php echo $this->session->userdata('idusuario'); ?></h5>
@@ -13,24 +13,13 @@
 
     <div class="container form-group mt-3">
 
-        <!-- <div class="col-md-6">
-            <label for="">Tipo de busqueda:</label>
-            <select class="form-control" >
-              <option selected>Seleccione una opción</option>
-              <option value="1">CI / NIT</option>
-              <option value="2">Razón Social</option>
-            </select>
-        </div> -->
-
         <div class="row">
             <div class="col col-md-2 mt-3">
-                <label class="mt-2">DATO CI / NIT:</label>
-                
+                <label class="mt-2">DATO CI / NIT:</label> 
             </div>
 
             <div class="col col-md-2 mt-3">
-                <input type="text" class="form-control border-left-success" id="nombresocio" name="nombresocio" pattern="[0-9]+" required />
-
+                <input type="text" class="form-control border-left-success" id="nombresocio" name="nombresocio" required />
             </div>
 
             <div class="col col-md-2 mt-3">

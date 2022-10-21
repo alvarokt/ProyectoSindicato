@@ -92,6 +92,18 @@ class Socio_model extends CI_Model {
 		$this->db->insert("detalle",$data);
 	}
 
+	public function save_blqauto($data){
+		$this->db->where('idAutomovil',$data);
+		$this->db->set('estado1',2);
+		$this->db->update('automovil');
+	}
+
+	public function save_blqhoja($data){
+		$this->db->where('idHoja_ruta',$data);
+		$this->db->set('estado',2);
+		$this->db->update('hoja_ruta');
+	}
+
 	public function getAutos($idSocio) {
 		$this->db->select("A.idAutomovil AS idAuto,CONCAT('Movil Nº: ',A.numeroMovil,'' -- Linea: ',H.descripcion) AS label");
 		// $this->db->select("*");

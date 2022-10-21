@@ -28,6 +28,7 @@ class Venta_model extends CI_Model {
         $this->db->from('automovil');
         $this->db->where('idSocio',$idSocio);
         $this->db->where('idLinea',$idLinea);
+        $this->db->where('estado1',1);
         $this->db->order_by('datos','asc');
         $resultados = $this->db->get();
         

@@ -145,8 +145,10 @@ class Socio extends CI_Controller {
 
 	public function store(){
 		$this->db->trans_start();
-		$fecha = $this->input->post("hora");
-		// $subtotal = $this->input->post("subtotal");
+
+        //DATOS
+
+		$fecha = $this->input->post("fechahora");
 		$total = $this->input->post("total");
 		$idsocio = $this->input->post("idsocios");
 		$idusuario = $this->session->userdata('idusuario');
@@ -154,6 +156,7 @@ class Socio extends CI_Controller {
 		$hojaruta = $this->input->post("idhojaruta");
 		$preciounit = $this->input->post("precios");
 		$cantidades = $this->input->post("cantidades");
+        $movil = $this->input->post("automv");
 		// $importes = $this->input->post("importes");
 
 		$data = array(
@@ -161,13 +164,19 @@ class Socio extends CI_Controller {
 			'idUsuario' => $idusuario,
 			'fecha' => $fecha,
 			'total' => $total,
+            'fechaActualizacion' => $fecha,
 		);
 
 		if ($this->socio_model->save($data)) {
 			$idventa = $this->socio_model->lastID();
-			$this->save_detalle($idventa,$hojaruta,$hojaruta,$cantidades,$preciounit);
+			$this->save_detalle($idventa,$movil,$hojaruta,$cantidades,$preciounit);
+            $this->blqauto($movil);
+            $this->blqhoja($hojaruta);
 			//redirect(base_url()."movimientos/ventas");
 			$this->db->trans_complete();
+
+            //redireccionar a otro metodo Socio imprimir pdf
+            //redirect('socio/crearPdf/'.$idVenta.'','refresh');
 			redirect('socio/deshabilitados','refresh');
 
 		}else{
@@ -178,11 +187,11 @@ class Socio extends CI_Controller {
 
 	}
 
-	protected function save_detalle($idventa,$hojaruta,$hojaruta2,$cantidades,$preciounit){
+	protected function save_detalle($idventa,$movil,$hojaruta,$cantidades,$preciounit){
 		for ($i=0; $i < count($cantidades); $i++) { 
 			$data  = array(
 				'idVenta' => $idventa, 
-				'idAutomovil' => $hojaruta[$i],
+				'idAutomovil' => $movil[$i],
 				'idHoja_ruta' => $hojaruta[$i],
 				'cantidad' => $cantidades[$i],
 				'precioUnitario'=> $preciounit[$i],
@@ -193,6 +202,42 @@ class Socio extends CI_Controller {
 
 		}
 	}
+
+    protected function blqauto($movil){
+        for ($i=0; $i < count($movil); $i++) { 
+            $data  = $movil[$i];
+
+            $this->socio_model->save_blqauto($data);
+            // $this->updateProducto($productos[$i],$cantidades[$i]);
+
+        }
+    }
+
+    protected function blqhoja($hojaruta){
+        for ($i=0; $i < count($hojaruta); $i++) { 
+            $data  = $hojaruta[$i];
+
+            $this->socio_model->save_blqhoja($data);
+            // $this->updateProducto($productos[$i],$cantidades[$i]);
+
+        }
+    }
+
+    // protected function save_detalle($idventa,$movil,$hojaruta,$cantidades,$preciounit){
+    //     for ($i=0; $i < count($cantidades); $i++) { 
+    //         $data  = array(
+    //             'idVenta' => $idventa, 
+    //             'idAutomovil' => $movil[$i],
+    //             'idHoja_ruta' => $hojaruta[$i],
+    //             'cantidad' => $cantidades[$i],
+    //             'precioUnitario'=> $preciounit[$i],
+    //         );
+
+    //         $this->socio_model->save_detalle($data);
+    //         // $this->updateProducto($productos[$i],$cantidades[$i]);
+
+    //     }
+    // }
 
 	public function fillAutos() {
 		$idsocio =$_POST['socio_id'];
